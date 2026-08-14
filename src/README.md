@@ -2,7 +2,7 @@
 
 ## Ce qui va etre decrit ici correspond a tout ce que je vais essayer comme vulnerabilites
 
-## NOTE : Ce README.md me servira de bloc note / troubleshoot
+## NOTE : Ce README.md me servira de bloc note / troubleshoot ne tenez pas compte de la qualite redactionnelle.
 
 ### Ecran de login
 
@@ -30,4 +30,26 @@ On trouve plusieurs indices des le premier code source inspecte :
 
 ## POURSUITE
 
-Dans 
+Sur la page forum, en inspectant le code source, on comprend qu'il y a probablement 2 failles : une sur le telechargement (on est incite a regarder `faq_darkly.pdf`), la route `/projects/download` (coincidence, je ne pense pas), et une sur la modification des notes via l'api.
+
+Bon, on est tombe sur un flag gratuit en explorant la plateforme (page forum), les explications ici : [A01_Breach1](./A01_BrokenAccessControl/A01_Breach1/README.md).
+
+Aussi, en inspectant le code source (toujours sur forum) on voit la mention `html supported is not a joke. content goes straight into the DB`. => On va tester ca
+
+Quand on ouvre le code source d'un article du forum, on tombe sur des indices interessant qui rejoignent la mention sur l'interpretation html en input : `left /api/collect up from when I was debugging the bot — it logs whatever you throw at ?c= and hands it all back on GET. sophie: that is an open exfil log. wil: it's a DEBUG endpoint.` et `the moderation bot opens every thread with a live session... and a "flag" cookie that isn't httpOnly. wil: I'll fix it. emilie: when. wil: yes.` 
+    |
+    v
+**HTML interprete => `api/collect?c= + <infos user>` => GET => on peut recuperer un cookie `flag` qui n'est pas httpOnly, ce qui veut dire qu'il peut etre accessible en JS.**
+
+Sur le code source toujours : 
+
+```
+<!-- TODO: replace stdlib xml.etree with defusedxml — emilie reported issue -->
+<!-- NOTE: /internal/config restricted to localhost only. do not expose. -->
+```
+
+**=> Un truc a voir ici, je sais pas encore quoi, a creuser**
+
+Y'a un article sur la date de BlackHole, curieux de voir si on peut la repousser en escaladant les privileges 
+
+
