@@ -69,4 +69,14 @@ Or, ce n'est apparemment pas le cas. Donc si nous sommes en mesure de recuperer 
 
 **Potentiellement une faille au dessus !** 
 
-YOUHOUUUUUUU ! Apres pas mal de temps a comprendre comment fonctionne Burp, j'ai reussi a bruteforce le mot de passe de John Doe : l'explication ici [BruteForce](xxx)
+YOUHOUUUUUUU ! Apres pas mal de temps a comprendre comment fonctionne Burp, j'ai reussi a bruteforce le mot de passe de John Doe : l'explication ici [BruteForce](./BruteForce/README.md)
+
+**Retour apres 2 semaines**
+
+On va attaquer le password reset flow, d'apres Benjamin : 
+```
+PSA: the 'forgot password' flow is… not great?
+Locked myself out last night and used the password reset. The link worked instantly — no email, the token was just sitting in the URL. And get this: that token is literally the md5 of my email address. Took me ten seconds to spot. Anyone could reset anyone's account this way — and once they're in, your account recovery code is just sitting there on your profile settings page. Reported it, we'll see. 🙃
+```
+
+C'est ok, la soluce ici => [PasswordFlaw](./A07_Identification_and_Authentication_Failures/A07_Breach1/README.md)
