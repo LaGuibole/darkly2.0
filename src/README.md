@@ -22,7 +22,7 @@ On trouve plusieurs indices des le premier code source inspecte :
 
 4. L'inspection nous a permis de voir qu'il se passait des choses dans la console, on trouve un fichier `console_eggs.js => regarder ce fichier en detail`
 
-5. Il faudra voir aussi pour le mdp de johndoe (voir `utils/html_hints/login.html`)
+5. Il faudra voir aussi pour le mdp de johndoe (voir `utils/html_hints/login_hints.html`)
 
 ## CHANGEMENT DE STRATEGIE
 
@@ -32,7 +32,7 @@ On trouve plusieurs indices des le premier code source inspecte :
 
 Sur la page forum, en inspectant le code source, on comprend qu'il y a probablement 2 failles : une sur le telechargement (on est incite a regarder `faq_darkly.pdf`), la route `/projects/download` (coincidence, je ne pense pas), et une sur la modification des notes via l'api.
 
-Bon, on est tombe sur un flag gratuit en explorant la plateforme (page forum), les explications ici : [A01_Breach1](./A01_BrokenAccessControl/A01_Breach1/README.md).
+1. FLAG = Bon, on est tombe sur un flag gratuit en explorant la plateforme (page forum), les explications ici : [A01_Breach1](./A01_BrokenAccessControl/A01_Breach1/README.md).
 
 Aussi, en inspectant le code source (toujours sur forum) on voit la mention `html supported is not a joke. content goes straight into the DB`. => On va tester ca
 
@@ -52,4 +52,21 @@ Sur le code source toujours :
 
 Y'a un article sur la date de BlackHole, curieux de voir si on peut la repousser en escaladant les privileges 
 
+Apres avoir fait un tour d'horizon global et repere plusieurs failles potentielles, on va tenter la premiere chose qui me tente maintenant, essayer de se log a la plateforme. On voit que John Doe dit sur le forum qu'il n'a pas change son mot de passe depuis longtemps. 
 
+Dans `utils/html_hints/login_hints.html` on peut lire `[AUTH] Session fixation window: cookie set without rotation post-login`. Ca signifie quoi ? 
+
+```
+Apres une connexion, le serveur garde le meme cookie de session qu'avant la connexion au lieu d'en generer un nouveau
+
+Un comportement securise voudrait que le cookie de session :
+
+Avant log => session=ABC
+Apres log => session=123
+```
+
+Or, ce n'est apparemment pas le cas. Donc si nous sommes en mesure de recuperer le cookie de session d'un utilisateur, on pourrait se log a sa session et s'y reconnecter en permanence. 
+
+**Potentiellement une faille au dessus !** 
+
+YOUHOUUUUUUU ! Apres pas mal de temps a comprendre comment fonctionne Burp, j'ai reussi a bruteforce le mot de passe de John Doe : l'explication ici [BruteForce](xxx)
