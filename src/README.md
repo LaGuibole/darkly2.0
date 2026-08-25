@@ -80,3 +80,17 @@ Locked myself out last night and used the password reset. The link worked instan
 ```
 
 C'est ok, la soluce ici => [PasswordFlaw](./A07_Identification_and_Authentication_Failures/A07_Breach1/README.md)
+
+On revient sur ce qui avait ete releve lors du tour d'horizon : 
+
+```
+Quand on ouvre le code source d'un article du forum, on tombe sur des indices interessant qui rejoignent la mention sur l'interpretation html en input : `left /api/collect up from when I was debugging the bot — it logs whatever you throw at ?c= and hands it all back on GET. sophie: that is an open exfil log. wil: it's a DEBUG endpoint.` et `the moderation bot opens every thread with a live session... and a "flag" cookie that isn't httpOnly. wil: I'll fix it. emilie: when. wil: yes.` 
+    |
+    v
+**HTML interprete => `api/collect?c= + <infos user>` => GET => on peut recuperer un cookie `flag` qui n'est pas httpOnly, ce qui veut dire qu'il peut etre accessible en JS.**
+```
+
+`v1.3.3 — wil     — "quick fix on file upload" (removed the whitelist entirely)` => Dans l'edition de profil, on va tester ca de suite sur l'avatar.
+
+
+`TODO` : Checker l'xp, un commentaire dit : "These xp values are made up". 

