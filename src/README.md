@@ -13,9 +13,9 @@
 ```
 On trouve plusieurs indices des le premier code source inspecte : 
 - Il existe des headers de debug 
-- On apprend que le cookie n'est pas transmis en httponly, ce qui veut dire qu'on doit pouvoir recuperer des sessions utilisateurs via du JS `todo: tester ca`
+- On apprend que le cookie n'est pas transmis en httponly, ce qui veut dire qu'on doit pouvoir recuperer des sessions utilisateurs via du JS `OK`
 - `stdlib xml.etree` on doit pouvoir utiliser ca pour jouer sur une faille XXE (external entity) si le parser interprete l'entite `todo: tester ca`
-- `"quick fix on file upload (removed the whitelist entirely)"` lol `todo: tester ca`
+- `"quick fix on file upload (removed the whitelist entirely)"` lol `OK`
 - `jwt secret was "42" wil changed it to "42network"` lololol `todo: a garder pour plus tard`
 ```
 (voir `utils/html_hints/login.html`)
@@ -39,7 +39,7 @@ Aussi, en inspectant le code source (toujours sur forum) on voit la mention `htm
 Quand on ouvre le code source d'un article du forum, on tombe sur des indices interessant qui rejoignent la mention sur l'interpretation html en input : `left /api/collect up from when I was debugging the bot — it logs whatever you throw at ?c= and hands it all back on GET. sophie: that is an open exfil log. wil: it's a DEBUG endpoint.` et `the moderation bot opens every thread with a live session... and a "flag" cookie that isn't httpOnly. wil: I'll fix it. emilie: when. wil: yes.` 
     |
     v
-**HTML interprete => `api/collect?c= + <infos user>` => GET => on peut recuperer un cookie `flag` qui n'est pas httpOnly, ce qui veut dire qu'il peut etre accessible en JS.**
+~~HTML interprete => `api/collect?c= + <infos user>` => GET => on peut recuperer un cookie `flag` qui n'est pas httpOnly, ce qui veut dire qu'il peut etre accessible en JS.~~
 
 Sur le code source toujours : 
 
@@ -73,7 +73,7 @@ YOUHOUUUUUUU ! Apres pas mal de temps a comprendre comment fonctionne Burp, j'ai
 
 **Retour apres 2 semaines**
 
-On va attaquer le password reset flow, d'apres Benjamin : 
+~~On va attaquer le password reset flow, d'apres Benjamin :~~
 ```
 PSA: the 'forgot password' flow is… not great?
 Locked myself out last night and used the password reset. The link worked instantly — no email, the token was just sitting in the URL. And get this: that token is literally the md5 of my email address. Took me ten seconds to spot. Anyone could reset anyone's account this way — and once they're in, your account recovery code is just sitting there on your profile settings page. Reported it, we'll see. 🙃
@@ -90,7 +90,25 @@ Quand on ouvre le code source d'un article du forum, on tombe sur des indices in
 **HTML interprete => `api/collect?c= + <infos user>` => GET => on peut recuperer un cookie `flag` qui n'est pas httpOnly, ce qui veut dire qu'il peut etre accessible en JS.**
 ```
 
-`v1.3.3 — wil     — "quick fix on file upload" (removed the whitelist entirely)` => Dans l'edition de profil, on va tester ca de suite sur l'avatar.
+~~`v1.3.3 — wil     — "quick fix on file upload" (removed the whitelist entirely)` => Dans l'edition de profil, on va tester ca de suite sur l'avatar.~~
+=> [Security_Misconfiguration](./A05_Security_Misconfiguration/README.md)
+
+J'ai refais un petit tour sur le `robot.txt`, qui devrait disallow les routes suivantes : 
+
+```
+User-agent: *
+Disallow: /admin
+Disallow: /staff
+Disallow: /internal
+Disallow: /backup
+Disallow: /api/grades
+Disallow: /_/
+Disallow: /static/uploads/
+```
+
+Deja, `/staff` est accessible, ce qui ne devrait pas etre le cas. On decouvre donc une nouvelle page avec des indices en html => [hitn](./../utils/html_hints/staff_hints.html).
+
+On va traiter dans un premier temps le plus obvious qui nous incite a faire une requete PATCH sur `/api/profile`. 
 
 
 `TODO` : Checker l'xp, un commentaire dit : "These xp values are made up". 
