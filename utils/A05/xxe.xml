@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data [
+  <!ENTITY xxe SYSTEM "http://127.0.0.1:4942/internal/config">
+]>
+<agenda>
+  <event>
+    <title>&xxe;</title>
+    <date>2026-08-26</date>
+  </event>
+</agenda>
