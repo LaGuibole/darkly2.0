@@ -86,6 +86,8 @@ Donc :
 2. Body : (JSON) `{"role": "cadet"}`
 3. On send le PATCH sur la route `http://localhost:4942/api/profile`
 
+![image](../../../utils/A01/assets/postman.png)
+
 - Avant :
 
 ![image](../../../utils/A01/assets/student.png)
@@ -93,3 +95,7 @@ Donc :
 - Apres :
 
 ![image](../../../utils/A01/assets/cadet.png)
+
+- Resultat : 
+
+![image](../../../utils/A01/assets/result.png)
