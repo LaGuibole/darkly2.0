@@ -99,4 +99,6 @@ Point de depart : Avoir un compte utilisateur
 
 - En exploitant le Path Traversal, on peut telecharger des fichiers qui ne devrait normalement pas pouvoir etre accessible au client.  
 
+![image](./utils/A01/assets/postman_backup.png)
+
 Flag : `FLAG{d0t_d0t_sl4sh_4ll_th3_w4y_d0wn}`
