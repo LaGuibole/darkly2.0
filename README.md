@@ -1,6 +1,6 @@
 # Darkly 2.0 - Kill chain
 
-### 1 - Unanthenticated information disclore (A01)  
+### 1 - Unanthenticated information disclosure (A01)  
 **[README.md](./src/A01_BrokenAccessControl/A01_Breach1/README.md)**  
 Point de depart : Aucun compte necessaire  
 
@@ -64,7 +64,7 @@ Point de depart : Avoir un compte utilisateur
 
 Flag : `FLAG{md5_1s_4_n4m3pl4t3_n0t_4_l0ck}`
 
-#### 5 - Vertical Privilege Escalation  
+### 5 - Vertical Privilege Escalation  
 **[README.md](./src/A01_BrokenAccessControl/A01_Breach2/README.md)**  
 Point de depart : Avoir un compte utilisateur
 
@@ -75,7 +75,7 @@ Point de depart : Avoir un compte utilisateur
 Flag : `FLAG{just_p4tch_y0ur_0wn_r0l3_lol}`
 
 
-#### 6 - Admin Credentials via XXE-SSRF  
+### 6 - Admin Credentials via XXE-SSRF  
 **[README.md](./src/A05_Security_Misconfiguration/Breach2/README.md)**  
 Point de depart : Avoir un compte utilisateur avec les droits `Cadet` a minima.  
 
@@ -85,7 +85,7 @@ Point de depart : Avoir un compte utilisateur avec les droits `Cadet` a minima.
 
 Flag : `FLAG{d3fus3dxml_n3xt_spr1nt_pr0m1s3}`
 
-#### 7 - PocketBase Admin Panel  
+### 7 - PocketBase Admin Panel  
 **[README.md](./src/A04_Insecure_Design/README.md)**
 Point de depart : Avoir un compte utilisateur avec les droits `Cadet` a minima. 
 
@@ -93,12 +93,12 @@ Point de depart : Avoir un compte utilisateur avec les droits `Cadet` a minima.
 
 Flag : `FLAG{th3_und3rsc0r3_sl4sh_kn0ws_th3_w4y}`
 
-#### 8 - Path traversal  
+### 8 - Path traversal  
 **[README.md](./src/A01_BrokenAccessControl/A01_Breach4/README.md)**  
 Point de depart : Avoir un compte utilisateur  
 
 - En exploitant le Path Traversal, on peut telecharger des fichiers qui ne devrait normalement pas pouvoir etre accessible au client.  
 
-![image](./utils/A01/assets/postman_backup.png)
+![image](./utils/A01/assets/postman_backup.png)  
 
 Flag : `FLAG{d0t_d0t_sl4sh_4ll_th3_w4y_d0wn}`
