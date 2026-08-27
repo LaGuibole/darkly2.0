@@ -93,4 +93,10 @@ Point de depart : Avoir un compte utilisateur avec les droits `Cadet` a minima.
 
 Flag : `FLAG{th3_und3rsc0r3_sl4sh_kn0ws_th3_w4y}`
 
-#### 8 - 
+#### 8 - Path traversal  
+**[README.md](./src/A01_BrokenAccessControl/A01_Breach4/README.md)**  
+Point de depart : Avoir un compte utilisateur  
+
+- En exploitant le Path Traversal, on peut telecharger des fichiers qui ne devrait normalement pas pouvoir etre accessible au client.  
+
+Flag : `FLAG{d0t_d0t_sl4sh_4ll_th3_w4y_d0wn}`
