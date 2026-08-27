@@ -77,7 +77,7 @@ Flag : `FLAG{just_p4tch_y0ur_0wn_r0l3_lol}`
 
 #### 6 - Admin Credentials via XXE-SSRF  
 **[README.md](./src/A05_Security_Misconfiguration/Breach2/README.md)**  
-Point de depart : Avoir un compte utilisateur
+Point de depart : Avoir un compte utilisateur avec les droits `Cadet` a minima.  
 
 - `defusedxml` est desactive, le parser XML en place resout les entites externes et nous permet de recuperer les credentials admin via une faille XXE-SSRF, merci le serveur.  
 
@@ -85,4 +85,12 @@ Point de depart : Avoir un compte utilisateur
 
 Flag : `FLAG{d3fus3dxml_n3xt_spr1nt_pr0m1s3}`
 
-#### 7 - 
+#### 7 - PocketBase Admin Panel  
+**[README.md](./src/A04_Insecure_Design/README.md)**
+Point de depart : Avoir un compte utilisateur avec les droits `Cadet` a minima. 
+
+- Les credentials admin recuperes lors de l'exploitation de la precedente faille nous permet d'avoir acces au panel Admin de PocketBase et recuperer le flag correspondant a l'escalation `God`.  
+
+Flag : `FLAG{th3_und3rsc0r3_sl4sh_kn0ws_th3_w4y}`
+
+#### 8 - 
