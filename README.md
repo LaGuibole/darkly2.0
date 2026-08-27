@@ -1,8 +1,7 @@
 # Darkly 2.0 
 ## Kill chain
 
-### 1 - Unanthenticated information disclore (A01)
-
+### 1 - Unanthenticated information disclore (A01)  
 **[README.md](./src/A01_BrokenAccessControl/A01_Breach1/README.md)**  
 Point de depart : Aucun compte necessaire  
 
@@ -14,7 +13,7 @@ Flag : `FLAG{1d0r_ur_pr0f1l3_1s_m1n3}`
 
 ### 2 - Account takeover
 
-#### 2.1 - Option 1 (sans flag)
+#### 2.1 - Option 1 (sans flag) BruteForce
 **[README.md](./src/BruteForce/README.md)**  
 Point de depart : Connaitre le domaine d'une addresse mail user  
 
@@ -31,10 +30,38 @@ email = jdoe@student.42.tech
 password = abc123
 ```
 
-#### 2.2 - Option 2 (avec flag)
+#### 2.2 - Option 2 (avec flag) - Password Reset Flaw
 **[README.md](./src/A07_Identification_and_Authentication_Failures/A07_Breach1/README.md)**  
 Point de depart : Connaitre le domaine d'une addresse mail user. Attaquer Benjamin, c'est cet user qui donne le flag. 
 
 ![image](./utils/A07/assets/benjamin.png)  
 
 Flag : `FLAG{r3s3t_t0k3n_w4s_just_md5_lol}`
+
+#### 2.3 - Option 3 (avec flag egalement) - Cookie Grabber
+**[README.md](./src/A03_Injection/A03_Breach1/README.md)**  
+Point de depart : Avoir decouvert le query parameter qui renvoie son argument + Avoir un compte utilisateur pour pouvoir poster un commentaire. 
+
+![image](./utils/A03/assets/webhooksite.png)
+
+Flag : `FLAG{xss_st0r3d_1s_n0t_4_f34tur3_w1l}`
+
+
+### 3 - Unrestricted file upload  
+**[README.md](./src/A05_Security_Misconfiguration/Breach1/README.md)**  
+Point de depart : Avoir un compte utilisateur
+
+![image](./utils/A05/assets/flag.png)
+
+Flag : `FLAG{unr3str1ct3d_upl0ad_g0_brrr}`
+
+### 4 - IDOR / BOLA - Acces aux notes des autres users (A01)
+**[README.md](./src/A01_BrokenAccessControl/A01_Breach3/README.md)**  
+Point de depart : Avoir un compte utilisateur  
+
+- A un utilisateur authentifie, l'API expose la liste complete des utilisateurs via `GET /api/users` + leurs `id`, on peut donc exploiter `GET /api/grades?student={id}`.
+
+![image](./utils/A01/assets/jdoe_grade_flag.png)  
+
+Flag : `FLAG{md5_1s_4_n4m3pl4t3_n0t_4_l0ck}`
+
