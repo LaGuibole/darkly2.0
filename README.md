@@ -1,5 +1,4 @@
-# Darkly 2.0 
-## Kill chain
+# Darkly 2.0 - Kill chain
 
 ### 1 - Unanthenticated information disclore (A01)  
 **[README.md](./src/A01_BrokenAccessControl/A01_Breach1/README.md)**  
@@ -38,7 +37,7 @@ Point de depart : Connaitre le domaine d'une addresse mail user. Attaquer Benjam
 
 Flag : `FLAG{r3s3t_t0k3n_w4s_just_md5_lol}`
 
-#### 2.3 - Option 3 (avec flag egalement) - Cookie Grabber
+#### 2.3 - Option 3 (avec flag egalement) - Cookie Grabber sur le ModBot
 **[README.md](./src/A03_Injection/A03_Breach1/README.md)**  
 Point de depart : Avoir decouvert le query parameter qui renvoie son argument + Avoir un compte utilisateur pour pouvoir poster un commentaire. 
 
@@ -65,3 +64,25 @@ Point de depart : Avoir un compte utilisateur
 
 Flag : `FLAG{md5_1s_4_n4m3pl4t3_n0t_4_l0ck}`
 
+#### 5 - Vertical Privilege Escalation  
+**[README.md](./src/A01_BrokenAccessControl/A01_Breach2/README.md)**  
+Point de depart : Avoir un compte utilisateur
+
+- Une requete PATCH avec les bons champs permet de modifier son role sur la WebApp et realiser une privilege escalation.  
+
+![image](./utils/A01/assets/result.png)  
+
+Flag : `FLAG{just_p4tch_y0ur_0wn_r0l3_lol}`
+
+
+#### 6 - Admin Credentials via XXE-SSRF  
+**[README.md](./src/A05_Security_Misconfiguration/Breach2/README.md)**  
+Point de depart : Avoir un compte utilisateur
+
+- `defusedxml` est desactive, le parser XML en place resout les entites externes et nous permet de recuperer les credentials admin via une faille XXE-SSRF, merci le serveur.  
+
+![image](./utils/A05/assets/result.png)  
+
+Flag : `FLAG{d3fus3dxml_n3xt_spr1nt_pr0m1s3}`
+
+#### 7 - 
